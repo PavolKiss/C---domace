@@ -86,53 +86,88 @@ int main()
    // 9. write down number of student that their name is longer than 7 characters
    
    // 10. sort students by salary ascending and write down the list 
-
-	int i,j;
-	
-	
-	for(i=0;i<20;i++){
-		
-		printf("Students: %s, Cities: %s, Pc: %d\n",student[i].name,student[i].address.city,student[i].address.pc);
+   
+   int i,j;
+   
+   for(i=0; i<20; i++){
+   	printf("Name: %s, City %s, Pc: %d\n",student[i].name,student[i].address.city,student[i].address.pc);
 	}
-
-	float maximum;
+	
+	float max;
 	for(i=0; i<20; i++){
-		if(maximum<student[i].salary)
-		maximum = student[i].salary;
+   	if(max<student[i].salary)
+   	max = student[i].salary;
+   }
+   printf("\nMaximum salary is: %1.2f", max);
+   
+   putchar('\n');
+   
+   printf("\nStudents from Kosice or Presov:\n" );
+   for(i=0; i<20; i++){
+   	if(strcmp(student[i].address.city,"Kosice")==0){
+	printf("\nFrom Kosice: %s", student[i].name);
 	}
 	
-	printf("\nHighest salary: %1.2f", maximum);
-
-	printf("\n");
-	printf("\nStudent salary between 1000 and 1300");
-	
-	for(i=0;i<20;i++){
-		if(student[i].salary>=1000 && student[i].salary<=1300)
-		printf("\n %s %1.2f", student[i].name,student[i].salary);
+	else if(strcmp(student[i].address.city,"Presov")==0){
+		printf("\nFrom Presov: %s", student[i].name);
 	}
+}
+   putchar('\n');
+   for(i=0; i<20; i++){
+   	if(student[i].salary>=1000 && student[i].salary<=1300)
+   	printf("\nStudents with salary between 1000 and 1300: %s", student[i].name);
+   }
+
+	putchar('\n');
 	
-	printf("\nStudents from Kosice");
-	for(i=0;i<20;i++){
-		if(strcmp(student[i].address.city,"Kosice")==0)
-		printf("\n%s", student[i].name);
-	}
-
-
 	int count = 0;
-	for(i=0;i<20;i++){
+	for(i=0; i<20; i++){
 		count=count+student[i].age;
 	}
 	
-	printf("\n");
-	float average;
-	average=(float)count/20;
-	printf("\nAverage age: %1.2f", average);
+	putchar('\n');
+	float averageAge;
+	averageAge=(float)count/20;
+	printf("\nAverage age of students is: %1.2f", averageAge);
 
-
-
-
-
-
-
+	
+	putchar('\n');
+	for(i=0; i<20; i++){
+		if(strcmp(student[i].address.city,"Kosice")==1)
+		printf("\nStudents not from Kosice: %s", student[i].name);
+	}
+	
+	putchar('\n');
+	int oldest=student[0].age;
+	for(i=0; i<20; i++){
+		if(oldest<student[i].age)
+		oldest = student[i].age;
+	}
+	
+	printf("\nOldest student is: %d old", oldest);
+	
+	
+	for(i=0; i<20; i++){
+	int lenght=strlen(student[i].name);
+	if(lenght>7)
+	printf("\nStudents name with 7+ characters: %s", student[i].name);
+}
+	
+	putchar('\n');
+	printf("\nSort salary ascending: ");
+ for(i=0;i<20-1;i++){
+      for(j=i+1;j<20;j++){
+          if( student[i].salary>student[j].salary){
+             
+             float temps=student[i].salary;
+             student[i].salary=student[j].salary;
+             student[j].salary=temps;
+		  }
+	  }
+   }  
+   
+	for(i=0;i<20;i++)
+   printf("\n%1.2f",student[i].salary);
+	
 
 }
